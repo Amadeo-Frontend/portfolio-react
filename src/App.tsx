@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Teste from './Teste'
+import EstiloGlobal from './styles'
+import { useState, useEffect } from 'react'
+import { Dna } from 'react-loader-spinner'
+import './app.css'
 
 function App() {
+  const [loading, setLoading] = useState(true)
+  useEffect(() => {
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+    }, 2500)
+  }, [])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      {loading ? (
+        <div className="container">
+          <Dna
+            visible={true}
+            height="180"
+            width="180"
+            ariaLabel="dna-loading"
+            wrapperStyle={{}}
+            wrapperClass="dna-wrapper"
+          />
+        </div>
+      ) : (
+        <>
+          <EstiloGlobal />
+          <Teste />
+        </>
+      )}
+    </>
+  )
 }
 
-export default App;
+export default App
