@@ -1,8 +1,10 @@
-import Teste from './Teste'
-import EstiloGlobal from './styles'
+import EstiloGlobal, { Container } from './styles'
 import { useState, useEffect } from 'react'
 import { Dna } from 'react-loader-spinner'
 import './app.css'
+import Sidebar from './containers/Sidebar'
+import Sobre from './containers/Sobre'
+import Projetos from './containers/Projetos'
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -28,7 +30,13 @@ function App() {
       ) : (
         <>
           <EstiloGlobal />
-          <Teste />
+          <Container>
+            <Sidebar />
+            <main>
+              <Sobre />
+              <Projetos />
+            </main>
+          </Container>
         </>
       )}
     </>
