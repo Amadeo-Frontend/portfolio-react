@@ -7,6 +7,7 @@ const EstiloGlobal = createGlobalStyle`
     box-sizing: border-box;
     background:#fefefe;
     font-family: 'Poppins', sans-serif;
+    list-style:none;
 }
 body{
   padding-top:80px;
