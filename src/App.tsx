@@ -1,3 +1,4 @@
+import { ThemeProvider } from 'styled-components'
 import EstiloGlobal, { Container } from './styles'
 import { useState, useEffect } from 'react'
 import { Dna } from 'react-loader-spinner'
@@ -5,8 +6,14 @@ import './app.css'
 import Sidebar from './containers/Sidebar'
 import Sobre from './containers/Sobre'
 import Projetos from './containers/Projetos'
+import temaLight from './themes/light'
+import temaDark from './themes/dark'
 
 function App() {
+  const [estaUsandoTemaDark, setetaUsandoTemaDark] = useState(false)
+  function trocaTema() {
+    setetaUsandoTemaDark(!estaUsandoTemaDark)
+  }
   const [loading, setLoading] = useState(true)
   useEffect(() => {
     setLoading(true)
@@ -15,7 +22,7 @@ function App() {
     }, 2500)
   }, [])
   return (
-    <>
+    <ThemeProvider theme={estaUsandoTemaDark ? temaDark : temaLight}>
       {loading ? (
         <div className="container">
           <Dna
@@ -31,7 +38,7 @@ function App() {
         <>
           <EstiloGlobal />
           <Container>
-            <Sidebar />
+            <Sidebar trocaTema={trocaTema} />
             <main>
               <Sobre />
               <Projetos />
@@ -39,7 +46,7 @@ function App() {
           </Container>
         </>
       )}
-    </>
+    </ThemeProvider>
   )
 }
 
